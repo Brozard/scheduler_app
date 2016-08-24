@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
 
-  get 'sessions/create'
+  get '/auth/:provider/callback', to: 'sessions#create'
+
+  get 'signup', to: 'sessions#new'
+
+  # get 'sessions/create'
 
   get 'sessions/destroy'
 

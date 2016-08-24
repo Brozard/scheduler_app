@@ -3,19 +3,25 @@ class SessionsController < ApplicationController
   end
 
   def create
-    # Create a new session by finding the User record that matches the email entered
-    user = User.find_by_email(params[:email])
-    # If the User record exists and the password entered is correct...
-    if user && user.authenticate(params[:password])
-      # ...set the session user to that User's ID, set an expiration timer to the session, and redirect to root.
-      session[:user_id] = user.id
-      session[:expires_at] = Time.current + 15.minutes
-      redirect_to '/'
-    # ...otherwise, re-render this page.
-    else
-      render :new
-    end
+    @user = User.find_or_create_from_auth_hash(auth_hash)
+    self.current_user = @user
+    redirect_to '/'
   end
+
+  # def create
+  #   # Create a new session by finding the User record that matches the email entered
+  #   user = User.find_by_email(params[:email])
+  #   # If the User record exists and the password entered is correct...
+  #   if user && user.authenticate(params[:password])
+  #     # ...set the session user to that User's ID, set an expiration timer to the session, and redirect to root.
+  #     session[:user_id] = user.id
+  #     session[:expires_at] = Time.current + 15.minutes
+  #     redirect_to '/'
+  #   # ...otherwise, re-render this page.
+  #   else
+  #     render :new
+  #   end
+  # end
 
   def destroy
     # Use 'reset session' to completely destroy all session data
