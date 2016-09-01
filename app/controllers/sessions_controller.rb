@@ -13,8 +13,11 @@ class SessionsController < ApplicationController
       user = User.new name: auth_hash["info"]["name"], email: auth_hash["info"]["email"]
       user.authorizations.build provider: auth_hash["provider"], uid: auth_hash["uid"]
       user.save
-   
+      if user.email
+        UserMailer.welcome_email(user).deliver_later   
+      end
       render text: "Hi #{user.name}! You've signed up."
+
       # redirect_to '/', notice: "Hi #{user.name}! You've signed up."
     end
   end
