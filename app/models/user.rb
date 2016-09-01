@@ -5,8 +5,8 @@ class User < ActiveRecord::Base
   def self.create_from_hash(hash)
     create(
             name: hash["info"]["name"] || "#{hash["info"]["first_name"]} #{hash["info"]["last_name"]}",
-            email: hash["info"]["email"]
-            # location: hash["info"]["location"]
+            email: hash["info"]["email"],
+            location: hash["info"]["location"]
           )
   end
 
