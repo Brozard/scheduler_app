@@ -4,27 +4,51 @@ class SessionsController < ApplicationController
 
   def create
     auth_hash = request.env['omniauth.auth']
- 
-    @authorization = Authorization.find_by_provider_and_uid(auth_hash["provider"], auth_hash["uid"])
-    if @authorization
-      render text: "Welcome back #{@authorization.user.name}! You have already signed up."
-      # redirect_to '/', notice: "Welcome back #{@authorization.user.name}! You have already signed up."
-    else
-      user = User.new name: auth_hash["info"]["name"], email: auth_hash["info"]["email"]
-      user.authorizations.build provider: auth_hash["provider"], uid: auth_hash["uid"]
-      user.save
-      if user.email
-        UserMailer.welcome_email(user).deliver_later   
-      end
-      render text: "Hi #{user.name}! You've signed up."
+    puts auth_hash
+    puts auth_hash['info']
+    
+    # Find an authorization, or create a new authorization if one isn't found
+    @authorization = Authorization.find_or_create_from_hash(auth_hash)
 
-      # redirect_to '/', notice: "Hi #{user.name}! You've signed up."
+    if signed_in?
+      if @authorization.user == current_user
+        # User is signed in so they are trying to link an authorization with their
+        # account. But we found the authorization and the user associated with it 
+        # is the current user. So the authorization is already associated with 
+        # this user. So let's display an error message.
+        redirect_to root_url, notice: "Already linked that account!"
+      elsif @authorization.user.nil?
+        # The authorization is not associated with the current_user so lets 
+        # associate the authorization
+        @authorization.user = current_user
+        @authorization.save
+        redirect_to root_url, notice: "Successfully linked that account!"
+      else
+        redirect_to root_url, notice: "This #{@authorization.provider.capitalize} is already linked to an account."
+      end
+    else
+      if @authorization.user.present?
+        # The authorization we found had a user associated with it so let's 
+        # just log them in here
+        self.current_user = @authorization.user
+        redirect_to root_url, notice: "Signed in!"
+      else
+        # No user associated with the authorization so we create a new one
+        @user = User.create_from_hash(auth_hash)
+        @authorization.user = @user
+        self.current_user = @user
+        if current_user.email
+          UserMailer.welcome_email(current_user).deliver_later   
+        end
+        redirect_to root_url, notice: "New account created!"
+      end
     end
   end
 
   def destroy
     # Use 'reset session' to completely destroy all session data
     reset_session
+    self.current_user = nil
     redirect_to '/', notice: 'Logged out!'
   end
 end
