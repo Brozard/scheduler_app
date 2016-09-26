@@ -29,6 +29,7 @@ gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-github'
 
+gem "simple_calendar", "~> 2.0"
 gem 'whenever', :require => false
 
 # Use ActiveModel has_secure_password

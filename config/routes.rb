@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :users
+
   root 'static#welcome'
 
   get 'about', to: 'static#about', as: 'about'
