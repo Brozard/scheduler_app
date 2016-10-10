@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @meetings = Meeting.where(user_id: current_user.id)
   end
 
   def create
