@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :authorizations, dependent: :destroy
   has_many :meetings
+  belongs_to :user_timezone
   validates :name, :presence => true
 
   def self.create_from_hash(hash)
