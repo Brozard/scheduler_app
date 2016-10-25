@@ -7,6 +7,8 @@
 <% if current_user %>
   Signed in as <%= current_user.name %> | <%= link_to "Logout", logout_path %>
 
+  <% providers = ['facebook', 'twitter', 'github'] %>
+
   <% if Authorization.find_by(user_id: current_user.id, provider: 'facebook') %>
     Your <%= link_to "Facebook profile", "https://facebook.com" %> linked to this account.
   <% else %>
@@ -22,7 +24,7 @@
   <% if Authorization.find_by(user_id: current_user.id, provider: 'github') %>
     Your <%= link_to "Github profile", "https://github.com/#{current_user.find_auth('github').nickname}" %> linked to this account.
   <% else %>
-    <%= link_to "Log in with GitHub", "auth/github" %>
+    <%= link_to "Log in with Github", "auth/github" %>
   <% end %>
 
 <% else %>

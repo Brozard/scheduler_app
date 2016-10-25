@@ -5,15 +5,3 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-
-timezones = [
-  ['Atlantic', 'AST', -4],
-  ['Eastern', 'EST', -5],
-  ['Central', 'CST', -6],
-  ['Mountain', 'MST', -7],
-  ['Pacific', 'PST', -8]
-]
-
-timezones.length.times do |i|
-  UserTimezone.find_or_create_by(name: timezones[i][0], abbreviation: timezones[i][1], offset: timezones[i][2])
-end
