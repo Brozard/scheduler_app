@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+  before_filter :set_timezone
 
   protected
 
@@ -18,5 +19,12 @@ class ApplicationController < ActionController::Base
   def current_user=(user)
     @current_user = user
     session[:user_id] = user.nil? ? nil : user.id
+  end
+
+  private
+
+  def set_timezone
+    tz = current_user ? current_user.time_zone : nil
+    Time.zone = tz || ActiveSupport::TimeZone["London"]
   end
 end
