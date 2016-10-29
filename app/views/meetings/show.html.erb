@@ -20,5 +20,6 @@
   <%= @meeting.description %>
 </p>
 
-<%= link_to 'Edit', edit_meeting_path(@meeting) %> |
-<%= link_to 'Back', meetings_path %>
+<%= link_to 'Edit This Meeting', edit_meeting_path(@meeting) %> |
+<%= link_to 'Back to Calendar', user_path(current_user.id) %> |
+<%= link_to 'All Meetings', meetings_path %>
