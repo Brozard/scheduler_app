@@ -1,10 +1,11 @@
 class MeetingsController < ApplicationController
   before_action :set_meeting, only: [:show, :edit, :update, :destroy]
+  # before_action :validate_times, only: [:create, :update]
 
   # GET /meetings
   # GET /meetings.json
   def index
-    @meetings = Meeting.all
+    @meetings = Meeting.all#where(user_id: current_user.id)
   end
 
   # GET /meetings/1
@@ -71,5 +72,11 @@ class MeetingsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def meeting_params
       params.require(:meeting).permit(:name, :start_time, :end_time, :description)
+    end
+
+    def validate_times
+      if params["meeting"]["end_time"] < params["meeting"]["start_time"]
+        false
+      end
     end
 end

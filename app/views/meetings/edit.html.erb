@@ -2,5 +2,6 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @meeting %> |
-<%= link_to 'Back', meetings_path %>
+<%= link_to 'View Meeting', @meeting %> |
+<%= link_to 'Back To Calendar', user_path(current_user.id) %> |
+<%= link_to 'Upcoming Meetings', meetings_path %>

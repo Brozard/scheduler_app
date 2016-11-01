@@ -7,12 +7,12 @@
 
 <p>
   <strong>Start time:</strong>
-  <%= @meeting.start_time %>
+  <%= @meeting.start_datetime %>
 </p>
 
 <p>
   <strong>End time:</strong>
-  <%= @meeting.end_time %>
+  <%= @meeting.end_datetime %>
 </p>
 
 <p>
@@ -22,4 +22,4 @@
 
 <%= link_to 'Edit This Meeting', edit_meeting_path(@meeting) %> |
 <%= link_to 'Back to Calendar', user_path(current_user.id) %> |
-<%= link_to 'All Meetings', meetings_path %>
+<%= link_to 'Upcoming Meetings', meetings_path %>
