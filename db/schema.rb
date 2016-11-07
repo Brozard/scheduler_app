@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161029001010) do
+ActiveRecord::Schema.define(version: 20161107212539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20161029001010) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "nickname"
+    t.string   "username"
   end
 
   create_table "meetings", force: :cascade do |t|
@@ -42,6 +43,7 @@ ActiveRecord::Schema.define(version: 20161029001010) do
     t.string   "name"
     t.string   "location"
     t.string   "time_zone"
+    t.string   "nickname"
   end
 
   add_foreign_key "meetings", "users"

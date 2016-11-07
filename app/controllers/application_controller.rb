@@ -11,8 +11,16 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find_by(id: session[:user_id])
   end
 
+  # Double NOT to test whether or not there is a current user.
+  # If there is, this will return 'true.' Otherwise, it returns 'false.'
   def signed_in?
     !!current_user
+  end
+
+  # Single NOT to test whether or not there is a value for the current user's nickname.
+  # If there is, it will return 'false.' Otherwise, it will return 'true.'
+  def missing_nickname?
+    !current_user.nickname
   end
 
   helper_method :current_user, :signed_in?

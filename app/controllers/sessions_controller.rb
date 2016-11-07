@@ -40,7 +40,8 @@ class SessionsController < ApplicationController
         if current_user.email
           UserMailer.welcome_email(current_user).deliver_later   
         end
-        redirect_to root_url, notice: "New account created!"
+        # redirect_to root_url, notice: "New account created!"
+        redirect_to edit_user_url, notice: "New account created!"
       end
     end
   end

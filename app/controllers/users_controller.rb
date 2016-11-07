@@ -6,6 +6,9 @@ class UsersController < ApplicationController
   end
 
   def edit
+    if missing_nickname?
+      # Do something
+    end
   end
 
   def show
