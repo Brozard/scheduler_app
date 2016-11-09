@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161107212539) do
+ActiveRecord::Schema.define(version: 20161109003231) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,11 +19,11 @@ ActiveRecord::Schema.define(version: 20161107212539) do
   create_table "authorizations", force: :cascade do |t|
     t.string   "provider"
     t.string   "uid"
-    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "nickname"
     t.string   "username"
+    t.integer  "user_id"
   end
 
   create_table "meetings", force: :cascade do |t|
@@ -46,5 +46,6 @@ ActiveRecord::Schema.define(version: 20161107212539) do
     t.string   "nickname"
   end
 
+  add_foreign_key "authorizations", "users"
   add_foreign_key "meetings", "users"
 end

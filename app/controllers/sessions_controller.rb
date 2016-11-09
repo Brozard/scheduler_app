@@ -35,13 +35,14 @@ class SessionsController < ApplicationController
       else
         # No user associated with the authorization so we create a new one
         @user = User.create_from_hash(auth_hash)
-        @authorization.user = @user
         self.current_user = @user
+        @authorization.user = current_user
+        @authorization.save
         if current_user.email
           UserMailer.welcome_email(current_user).deliver_later   
         end
         # redirect_to root_url, notice: "New account created!"
-        redirect_to edit_user_url, notice: "New account created!"
+        redirect_to edit_user_url(current_user.id), notice: "New account created!"
       end
     end
   end

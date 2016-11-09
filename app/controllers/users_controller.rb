@@ -6,9 +6,11 @@ class UsersController < ApplicationController
   end
 
   def edit
-    if missing_nickname?
-      # Do something
-    end
+    # if missing_nickname?
+    #   if current_user.authorizations.last.nickname | current_user.authorizations.last.nickname
+    #     current_user.nickname = current_user.authorizations.last.nickname.downcase | current_user.authorizations.last.nickname.downcase
+    #   end
+    # end
   end
 
   def show
@@ -57,6 +59,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :email, :location, :time_zone)
+      params.require(:user).permit(:name, :email, :location, :time_zone, :nickname)
     end
 end
