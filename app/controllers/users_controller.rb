@@ -7,8 +7,8 @@ class UsersController < ApplicationController
 
   def edit
     # if missing_nickname?
-    #   if current_user.authorizations.last.nickname | current_user.authorizations.last.nickname
-    #     current_user.nickname = current_user.authorizations.last.nickname.downcase | current_user.authorizations.last.nickname.downcase
+    #   if current_user.authorizations.last.nickname || current_user.authorizations.last.username
+    #     current_user.nickname = current_user.authorizations.last.nickname.downcase || current_user.authorizations.last.username.downcase
     #   end
     # end
   end

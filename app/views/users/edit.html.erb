@@ -1,8 +1,28 @@
 <h1>Users#edit</h1>
 <p>Find me in app/views/users/edit.html.erb</p>
 
+<%= missing_nickname? %>
+
 <h1>Editing User</h1>
 
 <%= render 'form' %>
 
+<% if Authorization.find_by(user_id: current_user.id, provider: 'facebook') %>
+  Your <%= link_to "Facebook profile", "https://facebook.com" %> linked to this account.
+<% else %>
+  <%= link_to "Log in with Facebook", "../../auth/facebook" %>
+<% end %>
+<br>
+<% if Authorization.find_by(user_id: current_user.id, provider: 'twitter') %>
+  Your <%= link_to "Twitter profile", "https://twitter.com/#{current_user.find_auth('twitter').nickname}" %> linked to this account.
+<% else %>
+  <%= link_to "Log in with Twitter", "../../auth/twitter" %>
+<% end %>
+<br>
+<% if Authorization.find_by(user_id: current_user.id, provider: 'github') %>
+  Your <%= link_to "Github profile", "https://github.com/#{current_user.find_auth('github').nickname}" %> linked to this account.
+<% else %>
+  <%= link_to "Log in with Github", "../../auth/github" %>
+<% end %>
+<br>
 <%= link_to 'Upcoming Meetings', @user %>

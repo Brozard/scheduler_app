@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  # Method to return the current user, either by instance variable or by looking up User record that matches session[:user_id].
   def current_user
     @current_user ||= User.find_by(id: session[:user_id])
   end
@@ -23,8 +24,9 @@ class ApplicationController < ActionController::Base
     !current_user.nickname
   end
 
-  helper_method :current_user, :signed_in?
+  helper_method :current_user, :signed_in?, :missing_nickname?
 
+  # Method to set the current user
   def current_user=(user)
     @current_user = user
     session[:user_id] = user.nil? ? nil : user.id
@@ -32,13 +34,9 @@ class ApplicationController < ActionController::Base
 
   private
 
+  # All time values are stored in the database as they are in UTC.
+  # This method will change what timezone the user views these times in based on their timezone.
   def set_timezone(&action)
     Time.use_zone(current_user.time_zone, &action)
   end
-
-  # def old_set_timezone
-  #   tz = current_user ? current_user.time_zone : nil
-  #   Time.zone = tz || ActiveSupport::TimeZone["London"]
-  # end
-  
 end

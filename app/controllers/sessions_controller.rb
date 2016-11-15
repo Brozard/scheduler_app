@@ -12,24 +12,21 @@ class SessionsController < ApplicationController
 
     if signed_in?
       if @authorization.user == current_user
-        # User is signed in so they are trying to link an authorization with their
-        # account. But we found the authorization and the user associated with it 
-        # is the current user. So the authorization is already associated with 
-        # this user. So let's display an error message.
-        redirect_to root_url, notice: "Already linked that account!"
+        # User is signed in so they are trying to link an authorization with their account.
+        # But we found the authorization and the user associated with it is the current user.
+        # So the authorization is already associated with this user. So let's display an error message.
+        redirect_to edit_user_url(current_user.id), notice: "Already linked that account!"
       elsif @authorization.user.nil?
-        # The authorization is not associated with the current_user so lets 
-        # associate the authorization
+        # The authorization is not associated with the current_user so lets associate the authorization
         @authorization.user = current_user
         @authorization.save
-        redirect_to root_url, notice: "Successfully linked that account!"
+        redirect_to edit_user_url(current_user.id), notice: "Successfully linked that account!"
       else
-        redirect_to root_url, notice: "This #{@authorization.provider.capitalize} is already linked to an account."
+        redirect_to edit_user_url(current_user.id), notice: "This #{@authorization.provider.capitalize} is already linked to an account."
       end
     else
       if @authorization.user.present?
-        # The authorization we found had a user associated with it so let's 
-        # just log them in here
+        # The authorization we found had a user associated with it so let's just log them in here
         self.current_user = @authorization.user
         redirect_to root_url, notice: "Signed in!"
       else
