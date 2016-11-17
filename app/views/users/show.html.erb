@@ -1,11 +1,7 @@
 <h1>Users#show</h1>
 <p>Find me in app/views/users/show.html.erb</p>
 
-<%= Time.zone %><br>
-<%= Time.zone.name %><br>
-<%= Time.zone.now %><br>
-
-<% if signed_in? && params[:id].to_i == current_user.id %>
+<% if signed_in? && (params[:id].to_i == current_user.id || params[:nickname] == current_user.nickname) %>
   <%= link_to "New Event", new_meeting_path %>
   <%= month_calendar events: @meetings do |date, meetings| %>
     <%= date.day %>
@@ -15,4 +11,6 @@
       </div>
     <% end %>
   <% end %>
+<% else %>
+  You do not have access to this profile.
 <% end %>
