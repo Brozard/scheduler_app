@@ -1,8 +1,6 @@
 <h1>Users#edit</h1>
 <p>Find me in app/views/users/edit.html.erb</p>
 
-<%= missing_nickname? %>
-
 <h1>Editing User</h1>
 
 <%= render 'form' %>
@@ -25,4 +23,4 @@
   <%= link_to "Log in with Github", "../../auth/github" %>
 <% end %>
 <br>
-<%= link_to 'Upcoming Meetings', @user %>
+<%= link_to 'Upcoming Meetings', user_path %>

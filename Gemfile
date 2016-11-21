@@ -29,8 +29,10 @@ gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-github'
 
-gem "simple_calendar", "~> 2.0"
+gem 'simple_calendar', '~> 2.0'
 gem 'whenever', :require => false
+
+gem 'faker'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

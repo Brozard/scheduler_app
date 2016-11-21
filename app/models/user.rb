@@ -7,11 +7,31 @@ class User < ActiveRecord::Base
     create(
             name: hash["info"]["name"] || "#{hash["info"]["first_name"]} #{hash["info"]["last_name"]}",
             email: hash["info"]["email"],
-            location: hash["info"]["location"]
+            location: hash["info"]["location"],
+            nickname: hash["info"]["nickname"] || hash["info"]["username"]
           )
   end
 
   def find_auth(provider)
     Authorization.find_by(user_id: id, provider: provider)
   end
+
+  def check_nickname
+    if nickname == nil || nickname == 'meetings'
+      random_nickname
+    else
+      nickname
+    end
+  end
+
+  private
+    def random_nickname
+      nickname = Faker::Lorem.word
+      if User.find_by(nickname: nickname)
+        nickname = nil
+        random_nickname
+      else
+        nickname
+      end
+    end
 end

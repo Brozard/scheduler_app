@@ -10,10 +10,14 @@ Rails.application.routes.draw do
 
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
-  get ':nickname', to: 'users#show'
-
   resources :meetings
-  resources :users
+  # resources :users
+
+  get ':nickname', to: 'users#show', as: 'user'
+  get ':nickname/edit', to: 'users#edit', as: 'edit_user'
+  patch ':nickname', to: 'users#update', as: 'update_user'
+  # put ':nickname', to: 'users#update', as: 'update_user'
+  delete ':nickname', to: 'user#destroy', as: 'delete_user'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
