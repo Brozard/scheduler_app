@@ -58,7 +58,7 @@
   .wday-6 {}
 
   .today {
-    background: #FFEEB0
+    background: #FFEEA0!important;
   }
 
   .past {}
@@ -74,5 +74,7 @@
   }
   .current-month {}
 
-  .has-events {}
+  .has-events {
+    background: #CCEED0
+  }
 }
