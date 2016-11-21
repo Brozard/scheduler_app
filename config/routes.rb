@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   get 'about', to: 'static#about', as: 'about'
 
-  get 'signup', to: 'sessions#new', as: 'signup'
+  get 'signin', to: 'sessions#new', as: 'signin'
   
   get 'auth/:provider/callback', to: 'sessions#create'
 

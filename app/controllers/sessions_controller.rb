@@ -28,7 +28,7 @@ class SessionsController < ApplicationController
       if @authorization.user.present?
         # The authorization we found had a user associated with it so let's just log them in here
         self.current_user = @authorization.user
-        redirect_to root_url, notice: "Signed in!"
+        redirect_to user_path(current_user.nickname), notice: "Signed in!"
       else
         # No user associated with the authorization so we create a new one
         @user = User.create_from_hash(auth_hash)
@@ -38,6 +38,7 @@ class SessionsController < ApplicationController
         self.current_user = @user
         @authorization.user = current_user
         @authorization.save
+        
         if current_user.email
           UserMailer.welcome_email(current_user).deliver_later   
         end
