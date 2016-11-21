@@ -7,7 +7,7 @@
     <%= date.day %>
     <% meetings.each do |meeting| %>
       <div>
-        <%= link_to "#{meeting.name}: #{meeting.starts_at} - #{meeting.ends_at}", meeting_path %>
+        <%= link_to "#{meeting.name}: #{meeting.starts_at} - #{meeting.ends_at}", meeting_path(meeting) %>
       </div>
     <% end %>
   <% end %>

@@ -1,6 +1,9 @@
 <h1>Editing Meeting</h1>
-
-<%= render 'form' %>
+<% if @meeting.user_id == current_user.id %>
+  <%= render 'form' %>
+<% else %>
+  <p>You do not have access to edit this meeting.</p>
+<% end %>
 
 <%= link_to 'View Meeting', @meeting %> |
 <%= link_to 'Back To Calendar', user_path(current_user.id) %> |
