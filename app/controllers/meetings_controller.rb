@@ -5,7 +5,7 @@ class MeetingsController < ApplicationController
   # GET /meetings
   # GET /meetings.json
   def index
-    @meetings = Meeting.all#where(user_id: current_user.id)
+    @meetings = Meeting.where(user_id: current_user.id)
   end
 
   # GET /meetings/1
