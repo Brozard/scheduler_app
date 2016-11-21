@@ -21,7 +21,8 @@
 </p>
 
 <% if @meeting.user_id == current_user.id %>
-  <%= link_to 'Edit This Meeting', edit_meeting_path(@meeting) %> |
+  <%= link_to 'Edit This Meeting', edit_meeting_path(@meeting), class: "nav_links" %> |
 <% end %>
-<%= link_to 'Back to Calendar', user_path(current_user.nickname) %> |
-<%= link_to 'Upcoming Meetings', meetings_path %>
+<%= link_to 'Your Upcoming Meetings', meetings_path, class: "nav_links" %> | 
+<%= link_to 'Your Calendar', user_path(current_user.nickname), class: "nav_links" %>
+

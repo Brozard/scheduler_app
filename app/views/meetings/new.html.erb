@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Back to Calendar', user_path(current_user.id) %> |
-<%= link_to 'All Meetings', meetings_path %>
+<%= link_to 'Back to Calendar', user_path(current_user.id), class: "nav_links" %> |
+<%= link_to 'All Meetings', meetings_path, class: "nav_links" %>

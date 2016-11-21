@@ -9,20 +9,19 @@
       <th>Start time</th>
       <th>End time</th>
       <th>Description</th>
-      <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @meetings.each do |meeting| %>
       <tr>
-        <td><%= meeting.name %></td>
+        <td><%= link_to meeting.name, meeting %></td>
         <td><%= meeting.start_datetime %></td>
         <td><%= meeting.end_datetime %></td>
         <td><%= meeting.description %></td>
-        <td><%= link_to 'Show', meeting %></td>
         <td><%= link_to 'Edit', edit_meeting_path(meeting) %></td>
-        <td><%= link_to 'Destroy', meeting, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', meeting, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +29,5 @@
 
 <br>
 
-<%= link_to 'New Meeting', new_meeting_path %>
+<%= link_to 'New Meeting', new_meeting_path %> | 
+<%= link_to 'Your Calendar', user_path(current_user.nickname), class: "nav_links" %>
