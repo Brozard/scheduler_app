@@ -32,9 +32,11 @@ class SessionsController < ApplicationController
       else
         # No user associated with the authorization so we create a new one
         @user = User.create_from_hash(auth_hash)
+        # We have to check to see if a nickname was saved to the user from the hash.
+        # If there wasn't, the check_nickname function will return an auto-generated one.
         @user.nickname = @user.check_nickname
         @user.save
-
+        # Set the current_user to be the new user that was created, and then save that id to the authorization.
         self.current_user = @user
         @authorization.user = current_user
         @authorization.save
