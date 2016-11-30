@@ -13,6 +13,118 @@
  *= require_tree .
  *= require_self
  */
-a {
+
+/*Import*/
+
+/*@import url('https://fonts.googleapis.com/css?family=Open+Sans')*/
+
+/*Global reset*/
+
+html, body, h1, h2, h3, h4, ul, ol, li, p, a {
+  padding: 0;
+  border: 0;
+  margin: 0;
+  font-family: Arimo, Verdana, sans-serif;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+/*Gloabl tag settings*/
+
+a, a:visited {
   text-decoration: none;
+  color: #404;
+  font-size: 14px;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #208;
+  background-color: inherit;
+}
+
+h1 {
+  color: #000;
+  margin: 15px 0;
+  text-align: center;
+  /*font-family: Verdana, sans-serif;*/
+}
+
+h2 {
+  color: #000;
+  margin: 20px 0 5px 0;
+  padding: 2px;
+  /*font-family: Verdana, sans-serif;*/
+}
+
+h3 {
+  color: #000;
+  margin: 10px 0 10px 0;
+  /*font-family: Verdana, sans-serif;*/
+}
+
+p {
+  color: #000;
+  margin: 0 0 10px 0;
+  font-size: 14px
+}
+
+ul, ol {
+  padding: 0 0 0 30px;
+}
+
+li {
+  margin-bottom: 5px;
+}
+
+table {
+  padding-left: 10px;
+}
+
+th {
+  text-align: left;
+}
+
+td {
+  padding-right: 5px;
+}
+
+/*Custom Header settings*/
+
+header {
+  padding: 10px 5px;
+  background-color: #d33;
+}
+
+header span {
+  display: block;
+  text-align: right;
+  padding-right: 10px;
+}
+
+header h1 a {
+  text-align: center;
+  font-size: 28px;
+}
+
+header a {
+  color: #fff;
+}
+
+header a:visited {
+  color: #fff;
+}
+
+header a:hover {
+  color: #bba;
+  background-color: inherit;
+}
+
+/*Custom Nav settings*/
+
+nav {
+  padding-left: 10px;
 }

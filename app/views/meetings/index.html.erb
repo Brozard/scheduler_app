@@ -29,5 +29,7 @@
 
 <br>
 
-<%= link_to 'New Meeting', new_meeting_path %> | 
-<%= link_to 'Your Calendar', user_path(current_user.nickname), class: "nav_links" %>
+<nav>
+  <%= link_to 'New Meeting', new_meeting_path %> | 
+  <%= link_to 'Your Calendar', user_path(current_user.nickname), class: "nav_links" %>
+</nav>

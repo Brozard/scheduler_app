@@ -5,10 +5,11 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
 </head>
 <body>
-  <nav>
-    <%= link_to "Omni-Scheduler", root_url, class: "root-link" %> | 
+  <header>
+    <h1><%= link_to "Omni-Scheduler", root_url, class: "root-link" %></h1> 
     <% if current_user %>
       <span class="nav-links">
         <%= link_to current_user.name, user_path(current_user.nickname) %> (<%= link_to "Edit", edit_user_path(current_user.nickname) %>) | 
@@ -17,11 +18,12 @@
     <% else %>
       <%= link_to "Sign In", signin_path %>
     <% end %>
+  </header>
+
 
     <% flash.each do |name, message| %>
       <%= content_tag :div, message, class: name %>
     <% end %>
-  </nav>
 
   <%= yield %>
 

@@ -41,5 +41,7 @@
 
 <br>
 
-<%= link_to 'Your Upcoming Meetings', meetings_path, class: "nav_links" %> | 
-<%= link_to 'Your Calendar', user_path(current_user.nickname), class: "nav_links" %>
+<nav>
+  <%= link_to 'Your Upcoming Meetings', meetings_path, class: "nav_links" %> | 
+  <%= link_to 'Your Calendar', user_path(current_user.nickname), class: "nav_links" %>
+</nav>

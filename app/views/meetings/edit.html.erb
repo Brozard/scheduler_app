@@ -5,6 +5,8 @@
   <p>You do not have access to edit this meeting.</p>
 <% end %>
 
-<%= link_to 'View This Meeting', @meeting %> |
-<%= link_to 'Your Upcoming Meetings', meetings_path %> | 
-<%= link_to 'Your Calendar', user_path(current_user.nickname) %>
+<nav>
+  <%= link_to 'View This Meeting', @meeting %> |
+  <%= link_to 'Your Upcoming Meetings', meetings_path %> | 
+  <%= link_to 'Your Calendar', user_path(current_user.nickname) %>
+</nav>
