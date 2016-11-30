@@ -1,10 +1,11 @@
 <h1>Editing Meeting</h1>
-<% if @meeting.user_id == current_user.id %>
-  <%= render 'form' %>
-<% else %>
-  <p>You do not have access to edit this meeting.</p>
-<% end %>
-
+<main class="edit-meeting">
+  <% if @meeting.user_id == current_user.id %>
+    <%= render 'form' %>
+  <% else %>
+    <p>You do not have access to edit this meeting.</p>
+  <% end %>
+</main>
 <nav>
   <%= link_to 'View This Meeting', @meeting %> |
   <%= link_to 'Your Upcoming Meetings', meetings_path %> | 
