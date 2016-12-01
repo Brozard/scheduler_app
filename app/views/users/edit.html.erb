@@ -1,46 +1,47 @@
-<h1>Edit Your Profile</h1>
+<main>
+  <h1>Edit Your Profile</h1>
 
-<% if params[:nickname] == current_user.nickname %>
+  <% if params[:nickname] == current_user.nickname %>
 
-  <div class="form">
-    <%= render 'form' %>
-  </div>
-  <div class="auths">
-    <div class="authorization">
-      <% if Authorization.find_by(user_id: current_user.id, provider: 'facebook') %>
-        Your <%= link_to "Facebook profile", "https://facebook.com" %> linked to this account.
-      <% else %>
-        <%= link_to "Log in with Facebook", "../../auth/facebook" %>
-      <% end %>
+    <div class="form">
+      <%= render 'form' %>
+    </div>
+    <div class="auths">
+      <div class="authorization">
+        <% if Authorization.find_by(user_id: current_user.id, provider: 'facebook') %>
+          Your <%= link_to "Facebook profile", "https://facebook.com" %> linked to this account.
+        <% else %>
+          <%= link_to "Log in with Facebook", "../../auth/facebook" %>
+        <% end %>
+      </div>
+
+      <br>
+
+      <div class="authorization">
+        <% if Authorization.find_by(user_id: current_user.id, provider: 'twitter') %>
+          Your <%= link_to "Twitter profile", "https://twitter.com/#{current_user.find_auth('twitter').nickname}" %> linked to this account.
+        <% else %>
+          <%= link_to "Log in with Twitter", "../../auth/twitter" %>
+        <% end %>
+      </div>
+
+      <br>
+
+      <div class="authorization">
+        <% if Authorization.find_by(user_id: current_user.id, provider: 'github') %>
+          Your <%= link_to "Github profile", "https://github.com/#{current_user.find_auth('github').nickname}" %> linked to this account.
+        <% else %>
+          <%= link_to "Log in with Github", "../../auth/github" %>
+        <% end %>
+      </div>
     </div>
 
-    <br>
+  <% else %>
+    <h3>You are not authorized to edit this user</h3>
+  <% end %>
 
-    <div class="authorization">
-      <% if Authorization.find_by(user_id: current_user.id, provider: 'twitter') %>
-        Your <%= link_to "Twitter profile", "https://twitter.com/#{current_user.find_auth('twitter').nickname}" %> linked to this account.
-      <% else %>
-        <%= link_to "Log in with Twitter", "../../auth/twitter" %>
-      <% end %>
-    </div>
-
-    <br>
-
-    <div class="authorization">
-      <% if Authorization.find_by(user_id: current_user.id, provider: 'github') %>
-        Your <%= link_to "Github profile", "https://github.com/#{current_user.find_auth('github').nickname}" %> linked to this account.
-      <% else %>
-        <%= link_to "Log in with Github", "../../auth/github" %>
-      <% end %>
-    </div>
-  </div>
-
-<% else %>
-  <h3>You are not authorized to edit this user</h3>
-<% end %>
-
-<br>
-
+  <br>
+</main>
 <nav>
   <%= link_to 'Your Upcoming Meetings', meetings_path, class: "nav_links" %> | 
   <%= link_to 'Your Calendar', user_path(current_user.nickname), class: "nav_links" %>

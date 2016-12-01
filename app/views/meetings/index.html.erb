@@ -1,33 +1,36 @@
-<p id="notice"><%= notice %></p>
+<main class="meetings-list">
+  <p id="notice"><%= notice %></p>
 
-<h1>Listing Meetings</h1>
+  <h1>Upcoming Meetings</h1>
+  <% if @meetings.length > 0 %>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Start time</th>
+          <th>End time</th>
+          <th>Description</th>
+          <th colspan="2"></th>
+        </tr>
+      </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Start time</th>
-      <th>End time</th>
-      <th>Description</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @meetings.each do |meeting| %>
-      <tr>
-        <td><%= link_to meeting.name, meeting %></td>
-        <td><%= meeting.start_datetime %></td>
-        <td><%= meeting.end_datetime %></td>
-        <td><%= meeting.description %></td>
-        <td><%= link_to 'Edit', edit_meeting_path(meeting) %></td>
-        <td><%= link_to 'Delete', meeting, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+      <tbody>
+        <% @meetings.each do |meeting| %>
+          <tr>
+            <td><%= link_to meeting.name, meeting %></td>
+            <td><%= meeting.start_datetime %></td>
+            <td><%= meeting.end_datetime %></td>
+            <td><%= meeting.description %></td>
+            <td><%= link_to 'Edit', edit_meeting_path(meeting) %></td>
+            <td><%= link_to 'Delete', meeting, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p class="default">You have no upcoming meetings.</p>
+  <% end %>
+</main>
 
 <nav>
   <%= link_to 'New Meeting', new_meeting_path %> | 

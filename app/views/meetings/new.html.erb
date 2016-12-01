@@ -1,7 +1,7 @@
 <h1>New Meeting</h1>
-
-<%= render 'form' %>
-
+<main>
+  <%= render 'form' %>
+</main>
 <nav>
   <%= link_to 'Back to Calendar', user_path(current_user.id), class: "nav_links" %> |
   <%= link_to 'All Meetings', meetings_path, class: "nav_links" %>

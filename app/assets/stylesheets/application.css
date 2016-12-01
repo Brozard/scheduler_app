@@ -41,7 +41,7 @@ a, a:visited {
 }
 
 a:hover {
-  text-decoration: none;
+  text-decoration: underline;
   color: #208;
   background-color: inherit;
 }
@@ -50,26 +50,35 @@ h1 {
   color: #000;
   margin: 15px 0;
   text-align: center;
-  /*font-family: Verdana, sans-serif;*/
+  line-height: 32px;
 }
 
 h2 {
   color: #000;
   margin: 20px 0 5px 0;
   padding: 2px;
-  /*font-family: Verdana, sans-serif;*/
+  line-height: 28px;
 }
 
 h3 {
   color: #000;
   margin: 10px 0 10px 0;
-  /*font-family: Verdana, sans-serif;*/
+  line-height: 24px;
+}
+
+h1 a, h2 a, h3 a {
+  font-size: inherit;
 }
 
 p {
   color: #000;
   margin: 0 0 10px 0;
   font-size: 14px
+}
+
+p.default {
+  text-align: center;
+  padding-top: 10px;
 }
 
 ul, ol {
@@ -86,10 +95,11 @@ table {
 
 th {
   text-align: left;
+  font-size: 16px;
 }
 
 td {
-  padding-right: 5px;
+  padding-right: 8px;
 }
 
 form {
@@ -98,6 +108,11 @@ form {
 
 label {
   font-size: 18px;
+}
+
+strong, th {
+  font-family: Helvetica, Verdana, sans-serif;
+  font-weight: bolder;
 }
 
 /*Custom Header settings*/
@@ -127,15 +142,16 @@ header a:visited {
 }
 
 header a:hover {
-  color: #bba;
+  color: #eed;
   background-color: inherit;
 }
 
 /*Custom Nav settings*/
 
 nav {
-  padding-left: 10px;
   text-align: center;
+  background-color: #fff;
+  padding-top: 10px;
 }
 
 #meeting-text {
@@ -148,8 +164,32 @@ nav {
   width: 320px;
 }
 
+.new-meeting-link, .meetings-link {
+  font-size: 20px;
+  line-height: 30px;
+}
+
+/*Custom Main settings*/
+
 main {
   width: 325px;
+  margin: 0 auto;
+  padding: 10px 200px;
+  background-color: #fff;
+}
+
+main.welcome-page {
+  width: 80%;
+  /*margin: 0 auto;*/
+}
+
+main.meetings-list {
+  width: 90%;
+  padding: 10px 0;
+}
+
+main.meetings-list table {
+  padding-top: 10px;
   margin: 0 auto;
 }
 
@@ -163,4 +203,12 @@ main input[type=submit] {
 
 main div.actions {
   text-align: center;
+}
+
+/*Media queries*/
+
+@media only screen and (max-width : 768px) {
+  main {
+    padding: 10px 0;
+  }
 }

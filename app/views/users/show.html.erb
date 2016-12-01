@@ -1,8 +1,6 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h1><%= params[:nickname] %>'s Profile</h1>
 
 <% if signed_in? && (params[:id].to_i == current_user.id || params[:nickname] == current_user.nickname) %>
-  <%= link_to "New Event", new_meeting_path %>
   <%= month_calendar events: @meetings do |date, meetings| %>
     <%= date.day %>
     <% meetings.each do |meeting| %>
@@ -11,6 +9,11 @@
       </div>
     <% end %>
   <% end %>
+  <nav>
+    <%= link_to "Create a New Event", new_meeting_path, class: "new-meeting-link" %>
+    <br/>
+    <%= link_to "Your Upcoming Events", meetings_path, class: "meetings-link" %>
+  </nav>
 <% else %>
   You do not have access to this profile.
 <% end %>

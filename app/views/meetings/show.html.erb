@@ -1,25 +1,28 @@
-<p id="notice"><%= notice %></p>
+<main>
+  <% if !!notice %>
+    <p id="notice"><%= notice %></p>
+  <% end %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @meeting.name %>
-</p>
+  <p>
+    <strong>Name:</strong>
+    <%= @meeting.name %>
+  </p>
 
-<p>
-  <strong>Start time:</strong>
-  <%= @meeting.start_datetime %>
-</p>
+  <p>
+    <strong>Description:</strong>
+    <%= @meeting.description %>
+  </p>
 
-<p>
-  <strong>End time:</strong>
-  <%= @meeting.end_datetime %>
-</p>
+  <p>
+    <strong>Start time:</strong>
+    <%= @meeting.start_datetime %>
+  </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @meeting.description %>
-</p>
-
+  <p>
+    <strong>End time:</strong>
+    <%= @meeting.end_datetime %>
+  </p>
+</main>
 <nav>
   <% if @meeting.user_id == current_user.id %>
     <%= link_to 'Edit This Meeting', edit_meeting_path(@meeting), class: "nav_links" %> |
