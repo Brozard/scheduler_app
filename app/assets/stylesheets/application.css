@@ -70,9 +70,9 @@ h1 a, h2 a, h3 a {
   font-size: inherit;
 }
 
-p {
+p, li {
   color: #000;
-  margin: 0 0 10px 0;
+  margin: 5px 0;
   font-size: 14px
 }
 
@@ -85,9 +85,9 @@ ul, ol {
   padding: 0 0 0 30px;
 }
 
-li {
-  margin-bottom: 5px;
-}
+/*li {
+  
+}*/
 
 table {
   padding-left: 10px;
