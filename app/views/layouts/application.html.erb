@@ -11,14 +11,14 @@
 <body>
   <header>
     <h1><%= link_to "Omni-Scheduler", root_url, class: "root-link" %></h1> 
-    <% if current_user %>
-      <span class="nav-links">
+    <span class="nav-links">
+      <% if current_user %>
         <%= link_to current_user.name, user_path(current_user.nickname) %> (<%= link_to "Edit", edit_user_path(current_user.nickname) %>) | 
         <%= link_to "Logout", logout_path %>
-      </span>
-    <% else %>
-      <%= link_to "Sign In", signin_path %>
-    <% end %>
+      <% else %>
+        <%= link_to "Sign In", signin_path %>
+      <% end %>
+    </span>
   </header>
 
 
