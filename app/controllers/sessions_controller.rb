@@ -15,14 +15,14 @@ class SessionsController < ApplicationController
         # User is signed in so they are trying to link an authorization with their account.
         # But we found the authorization and the user associated with it is the current user.
         # So the authorization is already associated with this user. So let's display an error message.
-        redirect_to edit_user_url(current_user.id), notice: "Already linked that account!"
+        redirect_to edit_user_url(current_user.nickname), notice: "Already linked that account!"
       elsif @authorization.user.nil?
         # The authorization is not associated with the current_user so lets associate the authorization
         @authorization.user = current_user
         @authorization.save
-        redirect_to edit_user_url(current_user.id), notice: "Successfully linked that account!"
+        redirect_to edit_user_url(current_user.nickname), notice: "Successfully linked that account!"
       else
-        redirect_to edit_user_url(current_user.id), notice: "This #{@authorization.provider.capitalize} is already linked to an account."
+        redirect_to edit_user_url(current_user.nickname), notice: "This #{@authorization.provider.capitalize} is already linked to an account."
       end
     else
       if @authorization.user.present?
