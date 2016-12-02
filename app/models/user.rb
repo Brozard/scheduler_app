@@ -7,8 +7,8 @@ class User < ActiveRecord::Base
     create(
             name: hash["info"]["name"] || "#{hash["info"]["first_name"]} #{hash["info"]["last_name"]}",
             email: hash["info"]["email"],
-            location: hash["info"]["location"] || hash["extra"]["raw_info"]["location"]["name"],
-            nickname: hash["info"]["nickname"] || hash["extra"]["raw_info"]["username"]
+            location: hash["info"]["location"], # || hash["extra"]["raw_info"]["location"]["name"],
+            nickname: hash["info"]["nickname"] || hash["info"]["email"].rpartition("@")[0] # || hash["extra"]["raw_info"]["username"]
           )
   end
 
