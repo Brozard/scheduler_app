@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+  # We do not want to check if a user is logged in while they are attempting to log in.
+  skip_before_action :require_login, only: [:new, :create]
+
   def new
   end
 

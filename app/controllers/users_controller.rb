@@ -6,15 +6,10 @@ class UsersController < ApplicationController
   # end
 
   def edit
-    # if missing_nickname?
-    #   if current_user.authorizations.last.nickname || current_user.authorizations.last.username
-    #     current_user.nickname = current_user.authorizations.last.nickname.downcase || current_user.authorizations.last.username.downcase
-    #   end
-    # end
   end
 
   def show
-    @meetings = Meeting.where(user_id: current_user.id)
+    @meetings = Meeting.where(user_id: @user.id)
   end
 
   # def create
@@ -54,8 +49,11 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      # @user = User.find_by(nickname: params[:nickname]) || User.find(params[:id])
-      @user = User.find_by(nickname: current_user.nickname) || User.find(current_user.id)
+      @user = User.find_by(nickname: params[:nickname])
+      if !@user
+        redirect_to root_url, notice: "User not found."
+      end
+      # @user = User.find_by(nickname: current_user.nickname) || User.find(current_user.id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
