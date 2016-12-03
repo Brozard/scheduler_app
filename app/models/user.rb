@@ -4,12 +4,16 @@ class User < ActiveRecord::Base
   validates :name, :presence => true
 
   def self.create_from_hash(hash)
-    create(
+    user = create(
             name: hash["info"]["name"] || "#{hash["info"]["first_name"]} #{hash["info"]["last_name"]}",
             email: hash["info"]["email"],
             location: hash["info"]["location"], # || hash["extra"]["raw_info"]["location"]["name"],
-            nickname: hash["info"]["nickname"] || hash["info"]["email"].rpartition("@")[0] # || hash["extra"]["raw_info"]["username"]
+            nickname: hash["info"]["nickname"]  # || hash["extra"]["raw_info"]["username"]
           )
+    if !user[:nickname] && !!user[:email]
+      user[:nickname] = hash["info"]["email"].rpartition("@")[0]
+    end
+    user.save
   end
 
   def find_auth(provider)
