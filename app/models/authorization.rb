@@ -16,8 +16,8 @@ class Authorization < ActiveRecord::Base
       if (!hash['info']['nickname'] && !hash['info']['username']) && !!hash['info']['email']
         auth[:username] = hash["info"]["email"].rpartition("@")[0]
       end
+      auth.save
     end
-
-    auth.save
+    auth
   end
 end

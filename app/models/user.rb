@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
       user[:nickname] = hash["info"]["email"].rpartition("@")[0]
     end
     user.save
+    user
   end
 
   def find_auth(provider)
