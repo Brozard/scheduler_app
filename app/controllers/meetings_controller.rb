@@ -73,10 +73,4 @@ class MeetingsController < ApplicationController
     def meeting_params
       params.require(:meeting).permit(:name, :start_time, :end_time, :description, :private)
     end
-
-    def validate_times
-      if params["meeting"]["end_time"] < params["meeting"]["start_time"]
-        false
-      end
-    end
 end
