@@ -3,6 +3,12 @@
     <p id="notice"><%= notice %></p>
   <% end %>
 
+  <% if !!@meeting.private %>
+    <h1>PRIVATE MEETING</h1>
+  <% else %>
+    <h1>PUBLIC MEETING</h1>
+  <% end %>
+
   <p>
     <strong>Name:</strong>
     <%= @meeting.name %>
